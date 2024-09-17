@@ -101,33 +101,37 @@
             <artifactId>jaxb-api</artifactId>
             <version>2.3.1</version>
         </dependency>
+   <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.28</version> <!-- Replace with the latest version -->
+    <scope>provided</scope>
+  </dependency>
+
     </dependencies>
 
     <properties>
       <!--<java.version>1.8</java.version>-->
       <log4j2.version>2.17.1</log4j2.version>
     </properties>
-
 <build>
     <plugins>
-      <!-- INFO: Needed to change jar file, in order to work inside docker -->
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <!-- Add build info to actuator /info endpoint -->
-              <goal>build-info</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-   <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-resources-plugin</artifactId>
-    <version>3.2.0</version>
-   </plugin>          
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+                <fork>true</fork>
+                <compilerId>eclipse</compilerId>
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.eclipse.tycho</groupId>
+                    <artifactId>org.eclipse.jdt.core</artifactId>
+                    <version>3.26.0</version> <!-- Use the latest version -->
+                </dependency>
+            </dependencies>
+        </plugin>
     </plugins>
 </build>
 </project>
